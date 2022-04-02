@@ -51,11 +51,8 @@ const selectItem = (event, img) => {
   } else {
     // alert('Hey, Already added !')
     // ==== Newly code for pop img ====>
-
-    sliders.pop(img);
     toggleSty();
-
-
+    sliders.pop(img);
   }
 
 }
