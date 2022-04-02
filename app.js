@@ -23,7 +23,7 @@ const showImages = (images) => {
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-    gallery.appendChild(div)
+    gallery.appendChild(div);
   })
 
 }
@@ -31,22 +31,40 @@ const showImages = (images) => {
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
-    .then(data => showImages(data.hitS))
+    .then(data => showImages(data.hits))
     .catch(err => console.log(err))
+
 }
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
- 
+  // <==== this class for toggle img style ====>
+  element.classList.add('imgSty');
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
+
+
   } else {
-    alert('Hey, Already added !')
+    // alert('Hey, Already added !')
+    // ==== Newly code for pop img ====>
+    toggleSty();
+    sliders.pop(img);
+
+
   }
+
 }
+// <==== Toggle img style ====>
+const toggleSty = () => {
+  const toggler = document.querySelector('.imgSty')
+  toggler.classList.remove('added')
+
+}
+
 var timer
 const createSlider = () => {
   // check slider image length
@@ -76,9 +94,18 @@ const createSlider = () => {
     alt="">`;
     sliderContainer.appendChild(item)
   })
+  // changeSlide(0)
+  // timer = setInterval(function () {
+  //   slideIndex++;
+  //   changeSlide(slideIndex);
+  // }, duration);
+
+  // <==== Code little bit changes due to negative value of time duration ====>
   changeSlide(0)
   timer = setInterval(function () {
-    slideIndex++;
+    if (duration >= 0) {
+      slideIndex++;
+    }
     changeSlide(slideIndex);
   }, duration);
 }
@@ -120,3 +147,12 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+// <==== Added 'Enter' Key function on search bar ====>
+document.getElementById("search")
+  .addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.key === 'Enter') {
+      document.getElementById("search-btn").click();
+    }
+  });

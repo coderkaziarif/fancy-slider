@@ -18,10 +18,13 @@
   cursor: pointer;
 }
 
+
 .added {
   border: 2px solid #1e1743;
   border-radius: 5px;
 }
+
+
 
 img {
   height: 400px;
@@ -36,7 +39,8 @@ img {
   cursor: pointer;
 }
 
-.prev, .next {
+.prev,
+.next {
   background-color: transparent;
   padding: 8px 10px;
   color: #fff;
@@ -59,6 +63,7 @@ img {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
     flex-direction: column;
   }
+
   #sliders {
     height: 300px;
     width: 90%;
