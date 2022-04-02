@@ -41,7 +41,7 @@ const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
   // <==== this class for toggle img style ====>
-  element.classList.add('imgSty');
+  // element.classList.add('imgSty');
 
   let item = sliders.indexOf(img);
   if (item === -1) {
@@ -51,17 +51,17 @@ const selectItem = (event, img) => {
   } else {
     // alert('Hey, Already added !')
     // ==== Newly code for pop img ====>
-    toggleSty();
     sliders.pop(img);
+    // toggleSty(); 
   }
 
 }
 // <==== Toggle img style ====>
-const toggleSty = () => {
-  const toggler = document.querySelector('.imgSty')
-  toggler.classList.remove('added')
+// const toggleSty = () => {
+//   const toggler = document.querySelector('.imgSty')
+//   toggler.classList.remove('added')
 
-}
+// }
 
 var timer
 const createSlider = () => {
